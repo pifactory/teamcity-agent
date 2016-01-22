@@ -1,7 +1,6 @@
 FROM node:4
 MAINTAINER Alexander Dvorkovyy
 
-
 ## START COMMON PART
 
 # Build arguments, do not use in container.
