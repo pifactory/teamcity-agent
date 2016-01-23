@@ -1,4 +1,4 @@
-#!/usr/bin/env ash
+#!/usr/bin/env bash
 
 if [ ! -d "%AGENT_DIR%/bin" ]; then
     echo "%AGENT_DIR% doesn't exist pulling build-agent from server $TEAMCITY_SERVER";
