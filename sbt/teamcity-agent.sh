@@ -7,7 +7,7 @@ if [ ! -d "%AGENT_DIR%/bin" ]; then
         let waiting+=3
         sleep 3
         if [ $waiting -eq 120 ]; then
-            echo "Teamcity server did not respond within 120 seconds"...
+            echo "Teamcity server did not respond within 120 seconds..."
             exit 42
         fi
     done
@@ -19,7 +19,7 @@ if [ ! -d "%AGENT_DIR%/bin" ]; then
 fi
 
 # if we have "--link some-docker:docker" and not DOCKER_HOST, let's set DOCKER_HOST automatically
-if [ -z "$DOCKER_PORT_2375_TCP" ]; then
+if [ -z "$DOCKER_HOST" -a "$DOCKER_PORT_2375_TCP" ]; then
 	export DOCKER_HOST="$DOCKER_PORT_2375_TCP"
 fi
 
