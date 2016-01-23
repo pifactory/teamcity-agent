@@ -18,4 +18,4 @@ RUN echo "==> fetch all sbt jars from Maven repo..." \
 VOLUME [ "/app" ]
 WORKDIR /app
 
-CMD "/teamcity-agents.shs
+CMD "/teamcity-agents.sh"
