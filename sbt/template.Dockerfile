@@ -1,8 +1,9 @@
 FROM williamyeh/java8
 MAINTAINER Alexander Dvorkovyy
 
-## Docker
 ## Teamcity
+
+## Docker
 
 ENV TEAMCITY_AGENT_NAME "SBT_Agent"
 

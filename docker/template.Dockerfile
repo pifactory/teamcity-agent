@@ -1,9 +1,9 @@
 FROM docker
 MAINTAINER Alexander Dvorkovyy
 
-## JDK
-
 ## Teamcity
+
+## JDK
 
 ENV TEAMCITY_AGENT_NAME "Docker_Agent"
 

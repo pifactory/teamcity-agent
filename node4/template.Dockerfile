@@ -1,11 +1,11 @@
 FROM node:4
 MAINTAINER Alexander Dvorkovyy
 
+## Teamcity
+
 ## JDK
 
 ## Docker
-
-## Teamcity
 
 #
 # Node stuff
