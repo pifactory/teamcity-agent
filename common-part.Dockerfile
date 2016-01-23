@@ -3,14 +3,13 @@
 
 # Build arguments, do not use in container.
 # Will be converted to ARG once Docker Hub migrates to 1.9
-ENV TEAMCITY_VERSION 9.1.5
 ENV AGENT_DIR /opt/buildAgent
 ENV AGENT_HOME /home/teamcity
 
 ADD teamcity-agent.sh /teamcity-agent.sh
 
 RUN apt-get update \
- && apt-get install -y curl git \
+ && apt-get install -y curl git unzip \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir -p $AGENT_DIR \
