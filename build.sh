@@ -4,5 +4,8 @@ for dir in */
 do
   cp teamcity-agent.sh $dir
 
-  sed '/MAINTAINER/ r common-part.Dockerfile' $dir'template.Dockerfile' > $dir'Dockerfile'
+  sed -e '/## JDK/ r part-jdk.Dockerfile' \
+   -e '/## Docker/ r part-docker.Dockerfile' \
+   -e '/## Teamcity/ r part-teamcity.Dockerfile' \
+      $dir'template.Dockerfile' > $dir'Dockerfile'
 done
