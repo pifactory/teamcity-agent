@@ -17,4 +17,4 @@ ENV TEAMCITY_AGENT_NAME "NodeJS_Agent"
 
 USER teamcity
 
-CMD "/teamcity-agent.sh"
+CMD ["/teamcity-agent.sh"]
