@@ -6,7 +6,7 @@ MAINTAINER Alexander Dvorkovyy
 ARG AGENT_DIR=/opt/buildAgent
 ARG AGENT_HOME=/home/teamcity
 
-ADD ./teamcity-agent.sh /teamcity-agent.sh
+COPY ./teamcity-agent.sh /teamcity-agent.sh
 
 RUN apt-get update \
  && apt-get install -y curl git unzip \
