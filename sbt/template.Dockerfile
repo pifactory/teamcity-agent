@@ -7,7 +7,7 @@ MAINTAINER Alexander Dvorkovyy
 
 ENV TEAMCITY_AGENT_NAME "SBT_Agent"
 
-ENV SBT_VERSION  0.13.8
+ENV SBT_VERSION  0.13.12
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 
@@ -18,8 +18,5 @@ USER teamcity
 
 RUN echo "==> fetch all sbt jars from Maven repo..." \
  && sbt
-
-VOLUME [ "/app" ]
-WORKDIR /app
 
 CMD ["/teamcity-agent.sh"]

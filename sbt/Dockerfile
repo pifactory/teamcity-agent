@@ -5,8 +5,8 @@ MAINTAINER Alexander Dvorkovyy
 
 # Build arguments, do not use in container.
 # Will be converted to ARG once Docker Hub migrates to 1.9
-ENV AGENT_DIR /opt/buildAgent
-ENV AGENT_HOME /home/teamcity
+ARG AGENT_DIR /opt/buildAgent
+ARG AGENT_HOME /home/teamcity
 
 ADD teamcity-agent.sh /teamcity-agent.sh
 
@@ -33,11 +33,9 @@ EXPOSE $TEAMCITY_AGENT_PORT
 
 ## Docker
 
-# Build arguments, do not use in container.
-# Will be converted to ARG once Docker Hub migrates to 1.9
-ENV DOCKER_VERSION 1.9.1
-ENV DOCKER_SHA256 52286a92999f003e1129422e78be3e1049f963be1888afc3c9a99d5a9af04666
-ENV DOCKER_COMPOSE_VERSION 1.5.2
+ARG DOCKER_VERSION 1.12.1
+ARG DOCKER_SHA256 05ceec7fd937e1416e5dce12b0b6e1c655907d349d52574319a1e875077ccb79
+ARG DOCKER_COMPOSE_VERSION 1.8.1
 
 RUN curl -fsSL "https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION" -o /usr/local/bin/docker \
 	&& echo "${DOCKER_SHA256}  /usr/local/bin/docker" | sha256sum -c - \
@@ -46,7 +44,7 @@ RUN curl -fsSL "https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSIO
 	&& chmod +x /usr/local/bin/docker-compose
 ENV TEAMCITY_AGENT_NAME "SBT_Agent"
 
-ENV SBT_VERSION  0.13.8
+ENV SBT_VERSION  0.13.12
 ENV SBT_HOME /usr/local/sbt
 ENV PATH ${PATH}:${SBT_HOME}/bin
 
@@ -57,8 +55,5 @@ USER teamcity
 
 RUN echo "==> fetch all sbt jars from Maven repo..." \
  && sbt
-
-VOLUME [ "/app" ]
-WORKDIR /app
 
 CMD ["/teamcity-agent.sh"]
