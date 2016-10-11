@@ -1,8 +1,6 @@
 
-# Build arguments, do not use in container.
-# Will be converted to ARG once Docker Hub migrates to 1.9
-ARG AGENT_DIR /opt/buildAgent
-ARG AGENT_HOME /home/teamcity
+ARG AGENT_DIR=/opt/buildAgent
+ARG AGENT_HOME=/home/teamcity
 
 ADD teamcity-agent.sh /teamcity-agent.sh
 
