@@ -3,10 +3,10 @@ MAINTAINER Alexander Dvorkovyy
 
 ## Teamcity
 
+ADD teamcity-agent.sh /teamcity-agent.sh
+
 ARG AGENT_DIR=/opt/buildAgent
 ARG AGENT_HOME=/home/teamcity
-
-ADD teamcity-agent.sh /teamcity-agent.sh
 
 RUN apt-get update \
  && apt-get install -y curl git unzip \
@@ -35,9 +35,13 @@ ARG DOCKER_VERSION=1.12.1
 ARG DOCKER_SHA256=05ceec7fd937e1416e5dce12b0b6e1c655907d349d52574319a1e875077ccb79
 ARG DOCKER_COMPOSE_VERSION=1.8.1
 
-RUN curl -fsSL "https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION" -o /usr/local/bin/docker \
-	&& echo "${DOCKER_SHA256}  /usr/local/bin/docker" | sha256sum -c - \
-	&& chmod +x /usr/local/bin/docker \
+RUN curl -fSL "https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz" -o docker.tgz \
+    	&& echo "${DOCKER_SHA256} *docker.tgz" | sha256sum -c - \
+    	&& tar -xzvf docker.tgz \
+    	&& mv docker/* /usr/local/bin/ \
+    	&& rmdir docker \
+    	&& rm docker.tgz \
+    	&& docker -v \
 	&& curl -fsSL "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose \
 	&& chmod +x /usr/local/bin/docker-compose
 ENV TEAMCITY_AGENT_NAME "SBT_Agent"
