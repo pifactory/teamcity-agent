@@ -11,7 +11,7 @@ if [ ! -d "%AGENT_DIR%/bin" ]; then
             exit 42
         fi
     done
-    curl -fsSLO $TEAMCITY_SERVER/update/buildAgent.zip && unzip -d $AGENT_DIR buildAgent.zip && rm buildAgent.zip
+    curl -fsSLO $TEAMCITY_SERVER/update/buildAgent.zip && unzip buildAgent.zip -d %AGENT_DIR% && rm buildAgent.zip
     chmod +x %AGENT_DIR%/bin/agent.sh
     echo "serverUrl=$TEAMCITY_SERVER" > %AGENT_DIR%/conf/buildAgent.properties
     echo "name=$TEAMCITY_AGENT_NAME" >> %AGENT_DIR%/conf/buildAgent.properties
